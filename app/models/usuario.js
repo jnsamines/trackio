@@ -3,13 +3,11 @@
 // Author : Jonathan Samines [jnsamines]
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    Types = Schema.Types;
 
 var UsuarioSchema = new Schema({
-    codigoUsuario : {
-        type : Number,
-        required : true
-    },
+    codigoUsuario : Types.ObjectId,
     nombreUsuario : {
         type : String,
         required : true,
