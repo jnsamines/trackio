@@ -6,6 +6,7 @@
 var http        = require('http'),
     bodyParser  = require('body-parser'),
     express     = require('express'),
+    path        = require('path'),
     mongoose    = require('mongoose');
 
 var config   = require('./app/config/config'),
@@ -37,16 +38,23 @@ logger.debug('Servidor iniciado en el puerto : ' + appSettings.port);
 
 // configuracion de middleware
 application.use(bodyParser());
+application.use(express.static(path.join(__dirname, 'public')));
 
+application.set('views', path.join(__dirname, '/app/views'));
+application.set('view engine', 'vash');
 
 // configuracion de router
 var apiRouter = express.Router(),
+    pagesRouter = express.Router(),
     Mapper = require('./app/mapper');
 
+pagesRouter.route('/home').get(function(request, response){
+    response.render('index',{ title : 'Hola Mundo', content : 'This is the content!'});
+});
+
+application.use('/', pagesRouter);
 application.use('/api', apiRouter);
 
 var mapper = new Mapper(apiRouter);
 mapper.map();
-
-
 
