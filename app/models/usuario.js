@@ -2,9 +2,10 @@
 // Modelo de datos de un Usuario
 // Author : Jonathan Samines [jnsamines]
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-var UsuarioSchema = mongoose.Scheme({
+var UsuarioSchema = new Schema({
     codigoUsuario : {
         type : Number,
         required : true

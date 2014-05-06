@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     Types = Schema.Types;
 
-var ProyectoSchema = Schema({
+var ProyectoSchema = new Schema({
     codigoProyecto : {
         type : String,
         required : true

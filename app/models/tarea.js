@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     Types = Schema.Types;
 
-var TareaSchema = Schema({
+var TareaSchema = new Schema({
     descripcion : {
         type : String
     },

@@ -3,22 +3,24 @@
 // Author : Jonathan Samines [jnsamines]
 
 // dependencias
-var http = require('http'),
-    express = require('express'),
-    mongoose = require('mongoose'),
-    logger = require('./app/config/logger'),
-    ApplicationConfig = require('./app/config/config'),
-    ConnectionSettings = require('./app/config/database');
+var http        = require('http'),
+    bodyParser  = require('body-parser'),
+    express     = require('express'),
+    mongoose    = require('mongoose');
 
-// globales
-var app = express(),
-    environment = process.argv[2] || 'dev',
-    configuration = ApplicationConfig[environment];
+var config   = require('./app/config/config'),
+    logger   = require('./app/config/logger'),
+    database = require('./app/config/database');
+
+
+// configuraciones globales
+var env         = process.argv[2] || 'dev',
+    appSettings = config.load(env),
+    dbSettings  = database.load(appSettings.database);
+
 
 // configuracion de base de datos
-var dbsettings = new ConnectionSettings(configuration.database);
-
-mongoose.connect(dbsettings.getConnectionString());
+mongoose.connect(dbSettings.getConnectionString());
 mongoose.connection.on('open', function(){
     logger.debug('Conexión a la base de datos exitosa.');
 });
@@ -28,17 +30,17 @@ mongoose.connection.on('error', function(e){
 
 
 // configuracion del servidor http
-var server = http.createServer(app).listen(configuration.port),
-    bodyParser = require('body-parser');
+var application = express(),
+    server = http.createServer(application).listen(appSettings.port);
 
-app.use(bodyParser());
 
-// configuracion del router
-var router = express.Router(),
-    Mapper = require('./app/mapper'),
-    mapper = new Mapper(router);
+// configuracion de middleware
+application.use(bodyParser());
 
-mapper.map();
 
-app.use('/api', router);
+// configuracion de router
+var apiRouter = express.Router();
+
+
+app.use('/api', apiRouter);
 

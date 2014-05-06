@@ -2,11 +2,12 @@
 // Configuracion global de la aplicacion
 // Author : Jonathan Samines [jnsamines]
 
-module.exports = {
+// configuracion de entornos
+var environment = {
     
     // configuracion del entorno de desarrollo
     dev : {
-        name : 'development',
+        mode : 'development',
         port : 4000,
         database : {
             host : 'localhost',
@@ -15,5 +16,16 @@ module.exports = {
             user : '',
             password : ''
         }
+    }
+};
+ 
+// se exporta el módulo
+module.exports = {
+    
+    // Obtiene los settings de configuracion adecuados al entorno
+    // <param name='env_param'>Entorno a configurar.</param>
+    load : function(env){
+        // se obtienen las configuraciones del entorno y se devuelven
+        return environment[env];
     }
 };

@@ -3,10 +3,9 @@
 // Author : Jonathan Samines [jnsamines]
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    Types = Schema.Types;
+    Schema = mongoose.Schema;
 
-var NotaTareaSchema = Schema({
+var NotaTareaSchema = new Schema({
     nota : String,
     fechaCreacion : Date,
     fechaModificacion : Date

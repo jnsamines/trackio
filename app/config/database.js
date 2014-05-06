@@ -4,7 +4,7 @@
 
 // Inicializa un nuevo objeto de conexión
 // <param name='options'>Opciones de conexión al servicio de datos.</param>
-var ConnectionSettings = function(options){
+var DatabaseSettings = function(options){
     this.user = options.user || '';
     this.password = options.password || '';
     this.host = options.host || 'localhost';
@@ -13,7 +13,7 @@ var ConnectionSettings = function(options){
 };
 
 // Obtiene la cadena de conexión correspondientes a los parametros
-ConnectionSettings.prototype.getConnectionString = function(){
+DatabaseSettings.prototype.getConnectionString = function(){
     var connection = 'mongodb://{{user}}:{{password}}@{{host}}:{{port}}/{{database}}';
     
     // se reemplaza cada holder con su dato correspondiente
@@ -26,5 +26,11 @@ ConnectionSettings.prototype.getConnectionString = function(){
     return connection;
 };
 
-// MOdulo exportado
-module.exports = ConnectionSettings;
+// Modulo exportado
+module.exports = {
+    
+    // shortcut para la inicialización de los settings de conexión.
+    load : function(options){
+        return new DatabaseSettings(options);
+    }
+};
