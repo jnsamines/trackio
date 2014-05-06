@@ -33,14 +33,20 @@ mongoose.connection.on('error', function(e){
 var application = express(),
     server = http.createServer(application).listen(appSettings.port);
 
+logger.debug('Servidor iniciado en el puerto : ' + appSettings.port);
 
 // configuracion de middleware
 application.use(bodyParser());
 
 
 // configuracion de router
-var apiRouter = express.Router();
+var apiRouter = express.Router(),
+    Mapper = require('./app/mapper');
+
+application.use('/api', apiRouter);
+
+var mapper = new Mapper(apiRouter);
+mapper.map();
 
 
-app.use('/api', apiRouter);
 

@@ -12,6 +12,7 @@ var ProyectoSchema = new Schema({
         type : String,
         required : true
     },
+    descripcionProyecto : String,
     coordinadorProyecto : { 
         type : Types.ObjectId, 
         ref : 'Usuario'
