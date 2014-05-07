@@ -11,7 +11,8 @@ var http        = require('http'),
 
 var config   = require('./app/config/config'),
     logger   = require('./app/config/logger'),
-    database = require('./app/config/database');
+    database = require('./app/config/database'),
+    mapper   = require('./app/mapper');
 
 
 // configuraciones globales
@@ -38,23 +39,17 @@ logger.debug('Servidor iniciado en el puerto : ' + appSettings.port);
 
 // configuracion de middleware
 application.use(bodyParser());
-application.use(express.static(path.join(__dirname, 'public')));
+application.use(express.static(path.join(__dirname, '/public')));
 
 application.set('views', path.join(__dirname, '/app/views'));
 application.set('view engine', 'vash');
 
 // configuracion de router
 var apiRouter = express.Router(),
-    pagesRouter = express.Router(),
-    Mapper = require('./app/mapper');
+    appRouter = express.Router();
 
-pagesRouter.route('/home').get(function(request, response){
-    response.render('index',{ title : 'Hola Mundo', content : 'This is the content!'});
-});
+mapper.mapAppRoutes(appRouter);
+mapper.mapApiRoutes(apiRouter);
 
-application.use('/', pagesRouter);
+application.use('/', appRouter);
 application.use('/api', apiRouter);
-
-var mapper = new Mapper(apiRouter);
-mapper.map();
-

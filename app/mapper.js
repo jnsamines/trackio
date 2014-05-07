@@ -2,21 +2,26 @@
 // Mapeo de rutas
 // Author : Jonathan Samines [jnsamines]
 
-var ProyectoController = require('./controllers/proyecto'),
-    UsuarioController  = require('./controllers/usuario');
+var ApplicationController = require('./controllers/application'),
+    ProyectoController    = require('./controllers/proyecto'),
+    UsuarioController     = require('./controllers/usuario');
 
+// Mapeo de rutas de la aplicación
+var mapper = {};
 
-var Mapper = function(router){
-    this.router = router;
+// Mapea las rutas de la aplicacion
+mapper.mapAppRoutes = function(router){
+    var application = new ApplicationController('', router);
+    application.map();
 };
 
-
-Mapper.prototype.map = function(){
-    var proyecto = new ProyectoController('/proyecto', this.router);
+// Mapea las rutas de api REST
+mapper.mapApiRoutes = function(router){
+    var proyecto = new ProyectoController('/proyecto', router);
     proyecto.map();
     
-    var usuario = new UsuarioController('/usuario', this.router);
+    var usuario = new UsuarioController('/usuario', router);
     usuario.map();
 };
 
-module.exports = Mapper;
+module.exports = mapper;
