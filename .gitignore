@@ -3,4 +3,5 @@
 # Example .gitignore files: https://github.com/github/gitignore
 
 node_modules/
+public/bower_components
 *.log
