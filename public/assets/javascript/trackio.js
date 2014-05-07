@@ -9,6 +9,6 @@ var Trackio = {
 
 // se inicializa la aplicacion
 $(document).on('ready', function(){
-    
+
 });
 

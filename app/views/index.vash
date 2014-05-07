@@ -1,7 +1,72 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>@model.title</title>
-    </head>
-    <body>@model.content</body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@model.title</title>
+    <link rel='stylesheet' href='bower_components/normalize.css/normalize.css' />
+    <link rel='stylesheet' href='assets/stylesheet/trackio.css' />
+</head>
+<body>
+
+    <header id='app-header'>
+        <h1 class='container medium center'>
+            <a href='/' title='@model.title'>@model.title</a>
+        </h1>
+    </header>
+    
+    <section id='app-container' class='container medium center'>
+        
+        <nav class='toolbar center'>
+            <span class='toolbar-item'>
+                <a class='button medium radius skyblue' href='#'>Track!</a>
+            </span>
+            <span class='toolbar-item'>
+                <input name='textElemento' class='medium radius'>
+            </span>
+        </nav>
+        
+        <section class='container center'>
+            
+            <table class='table center'>
+                <thead>
+                    <tr>
+                        <th>Codigo Tarea</th>
+                        <th>Tarea</th>
+                        <th>Tiempo</th>
+                        <th>Descripción</th>
+                        <th>Realizado Por</th>
+                    </tr>
+                </thead>
+                <tbody class='section'>
+                    <tr class='section-header'>
+                        <th colspan='5'>Nombre de Proyecto</th>
+                    </tr>
+
+                    <tr class='section-content'>
+                        <td>{{CodigoTarea}}</td>
+                        <td>{{Tarea}}</td>
+                        <td>{{Tiempo}}</td>
+                        <td>{{Descripcion}}</td>
+                        <td>{{RealizadoPor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </section>
+    </section>
+
+    
+    <footer id='app-footer' class='container medium center'>
+        <p class='center-text'>
+            Trackio! - Time tracking for projects <strong>&copy;</strong> Copyright 2014
+        </p>
+    </footer>
+    
+    <script src='bower_components/jquery/dist/jquery.js'></script>
+    <script src='bower_components/underscore/underscore.js'></script>
+    <script src='bower_components/backbone/backbone.js'></script>
+    <script src='bower_components/handlebars/handlebars.js'></script>
+    
+    <script src='assets/javascript/trackio.js'></script>
+</body>
 </html>
