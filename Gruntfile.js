@@ -18,6 +18,7 @@ module.exports = function(grunt){
                     '<%= dirs.css %>/components/header.css',
                     '<%= dirs.css %>/components/input.css',
                     '<%= dirs.css %>/components/tables.css',
+                    '<%= dirs.css %>/components/labels.css',
                     '<%= dirs.css %>/components/toolbar.css'
                 ] ,
                 dest : './public/assets/stylesheet/trackio.css'
@@ -25,7 +26,7 @@ module.exports = function(grunt){
         },
         
         watch : {
-            files : ['./public/assets/stylesheet/*'],
+            files : ['<%= dirs.css %>/*', '<%= dirs.css %>/components/*'],
             tasks : ['concat:css']
         }
     });

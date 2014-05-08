@@ -6,11 +6,11 @@
 .toolbar{
     background-color : #fafafa;
     color : #666;
-    margin-top : .5em;
     margin-bottom : .5em;
-    padding : .5em 2em;
+    overflow : hidden;
+    padding : .5em 1em;
 }
     .toolbar ul{ list-style : none; text-align : left; }
-    .toolbar-item{
+    .toolbar > *{
         display : inline-block;
     }

@@ -1,0 +1,256 @@
+/*
+    layout.css
+    Plantilla principal de la aplicacion
+    Author : Jonathan Samines [jnsamines]
+*/
+
+html, body{
+    background-color: #f5f5f5;
+    color : #202020;
+    font-size : 16px;
+}
+
+.container{
+    position : relative;
+    display : block;
+    overflow: hidden;
+}
+    .container.medium{
+        max-width : 61rem; 
+    }
+
+.application{
+    background-color : #fff;
+    min-height : 700px;
+}
+
+.footer{
+    margin-top: 30px;
+    margin-bottom : 30px;
+}
+/*
+    helpers.css
+    Utilidades varias
+*/
+
+/*   resets  */
+ul { margin : 0; padding: 0; }
+a, a:active, a:focus { text-decoration : none; color : #4183C4; }
+
+/* utilidades */
+.center{
+    margin : 0 auto;
+}
+
+.left{
+    float : left;
+}
+
+.right{
+    float : right;
+}
+
+.center-text{
+    text-align : center;
+}
+
+.radius{
+    -webkit-border-radius : 2px 2px;
+       -moz-border-radius : 2px 2px;
+        -ms-border-radius : 2px 2px;
+            border-radius : 2px 2px;
+}
+/*
+    buttons.css
+    Estilos para el componente botones
+*/
+
+.button{
+    display: inline-block;
+    color : #fff;
+    text-align : center;
+    padding : .5em 1em;
+    
+    -webkit-transition : .5s all ease-out;
+       -moz-transition : .5s all ease-out;
+        -ms-transition : .5s all ease-out;
+            transition : .5s all ease-out;
+}
+    .button:hover{
+        -webkit-transition : .5s all ease-in;
+           -moz-transition : .5s all ease-in;
+            -ms-transition : .5s all ease-in;
+                transition : .5s all ease-in;
+    }
+    .button.small{
+        padding: .3em .5em;
+        font-size : .8em;
+    }
+    .button.medium{
+        padding : .5em .8em;
+    }
+    .button.large{
+        padding : .7em 1.1em;
+    }
+    
+    .button.link{
+        padding : 0;
+        border-bottom : 1px dotted #4183C4;
+        color : #4183C4;
+    }
+
+    .button.skyblue{
+        background-color : #6A9FB5;
+    }
+        .button.skyblue:hover,
+        .button.skyblue:focus{
+            background-color : #468AA3;
+        }
+    
+    .button.green{
+        background-color : #90A959;
+    }
+        .button.green:hover,
+        .button.green:focus{
+            background-color : #73891B; 
+        }
+
+/* 
+    header.css
+    Componente de encabezado de aplicacion
+*/
+
+.header{
+    padding: 0.5em 0;
+    color : #fff;
+}
+    .header a{ color : #fff; }
+    .header .container{
+        overflow: hidden;
+        position : relative; 
+    }
+    .header .title,
+    .header .userbox{
+        display: inline-block;
+        margin : 0;
+        vertical-align : middle;
+    }
+    
+    .header .userbox{
+        cursor : pointer;
+        display : inline-block;
+    }
+        .userbox a,
+        .userbox img{ 
+            display: inline-block; 
+            vertical-align : middle;
+            padding : .4em .5em;
+        }
+
+        .header .userbox img{
+            width : 30px;
+            height : 30px;
+        }
+
+    
+    .header.red{
+        background-color : #AC4142;
+        border-bottom : 2px solid #9B3E3E;
+    }
+        .header.red .userbox{
+            background-color : #9B3E3E;
+        }
+/*
+    input.css
+    Componentes de entras de formulario
+*/
+
+input{
+    border : 1px solid #e0e0e0;
+    padding : .5em;
+    outline : none;
+}
+    input.small{
+        width : 160px;
+    }
+    input.medium{
+        width : 280px;
+    }
+    input.large{
+        width : 320px;
+    }
+/* 
+    table.css
+    Componente de tablas
+*/
+
+.table{ text-align : center; color : #505050; }
+
+    .table caption{
+        padding : .5em 1em;
+        font-weight : bold;
+        text-align : left;
+        border-bottom : 1px solid #75b5aa;
+    }
+
+    .table thead{
+        background-color : #fff;
+        border-bottom : 1px solid #e0e0e0;
+        font-size : .9rem;
+    }
+    .table thead th{
+        padding : 1em 1.4em;
+        text-align : center;
+    }
+    .table tbody{}
+        .table .section{}
+        .table .section-header{
+            background-color : #f5f5f5;
+            font-weight : normal;
+            font-size: .9em;
+        }
+            .section-header th{ 
+                padding : .6em 2em;
+                text-align : left;
+            }
+        .table .section-content{ font-size : .8em;  }
+        .table .section-content td{
+            padding : .6em 1em;
+        }
+
+    .table.large{ width : 95%; }
+    .table.medium { width : 60%; }
+    .table.small { width : auto; }
+/*
+    labels.css
+    Componente de usuario etiqueta
+*/
+
+.label{
+    display : inline-block;
+    padding : .2em .5em;
+    color : #fff;
+}
+    .label.skyblue{
+        background-color : #6A9FB5;
+    }
+
+    .label.yellow{
+        background-color : #F4BF75;
+    }
+/*
+    toolbar.css
+    Componente de barra de herramientas
+*/
+
+.toolbar{
+    background-color : #fafafa;
+    color : #666;
+    margin-bottom : .5em;
+    overflow : hidden;
+    padding : .5em 1em;
+}
+    .toolbar ul{ list-style : none; text-align : left; }
+    .toolbar > *{
+        display : inline-block;
+    }

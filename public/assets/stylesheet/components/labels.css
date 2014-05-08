@@ -1,0 +1,17 @@
+/*
+    labels.css
+    Componente de usuario etiqueta
+*/
+
+.label{
+    display : inline-block;
+    padding : .2em .5em;
+    color : #fff;
+}
+    .label.skyblue{
+        background-color : #6A9FB5;
+    }
+
+    .label.yellow{
+        background-color : #F4BF75;
+    }

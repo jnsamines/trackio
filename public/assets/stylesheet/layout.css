@@ -15,9 +15,9 @@ html, body{
     display : block;
     overflow: hidden;
 }
-.container.medium{
-    max-width : 61rem; 
-}
+    .container.medium{
+        max-width : 61rem; 
+    }
 
 .application{
     background-color : #fff;

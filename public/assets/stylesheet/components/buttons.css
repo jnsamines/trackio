@@ -22,13 +22,19 @@
     }
     .button.small{
         padding: .3em .5em;
-        font-size : .9em;
+        font-size : .8em;
     }
     .button.medium{
         padding : .5em .8em;
     }
     .button.large{
         padding : .7em 1.1em;
+    }
+    
+    .button.link{
+        padding : 0;
+        border-bottom : 1px dotted #4183C4;
+        color : #4183C4;
     }
 
     .button.skyblue{
@@ -44,5 +50,5 @@
     }
         .button.green:hover,
         .button.green:focus{
-            background-color : #94A861; 
+            background-color : #73891B; 
         }

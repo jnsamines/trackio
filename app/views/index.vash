@@ -8,26 +8,29 @@
 </head>
 <body>
 
-    <header id='app-header'>
-        <h1 class='container medium center'>
-            <a href='/' title='@model.title'>@model.title</a>
-        </h1>
+    <header class='header red'>
+        <div class='container medium center'>
+            <h1 class='title left'>
+                <a href='/' title='@model.title'>@model.title</a>
+            </h1>
+            <nav class='userbox right'>
+                <img src='https://avatars1.githubusercontent.com/u/1268268?s=140'>
+                <a href='#' title='Nombre de Usuario'>Nombre Usuario</a>
+            </nav>
+        </div>
     </header>
     
-    <section id='app-container' class='container medium center'>
+    <section class='application container medium center'>
         
         <nav class='toolbar center'>
-            <span class='toolbar-item'>
-                <a class='button medium radius skyblue' href='#'>Track!</a>
-            </span>
-            <span class='toolbar-item'>
-                <input name='textElemento' class='medium radius'>
-            </span>
+            <input name='textElemento' placeholder='Ingrese el nombre del proyecto' class='medium radius'>
+            <a class='button medium radius skyblue right' href='#'>Nuevo Proyecto + </a>
         </nav>
         
         <section class='container center'>
             
-            <table class='table center'>
+            <table class='table center large'>
+                <caption>Seguimiento de Proyectos</caption>
                 <thead>
                     <tr>
                         <th>Codigo Tarea</th>
@@ -43,11 +46,25 @@
                     </tr>
 
                     <tr class='section-content'>
-                        <td>{{CodigoTarea}}</td>
-                        <td>{{Tarea}}</td>
-                        <td>{{Tiempo}}</td>
-                        <td>{{Descripcion}}</td>
-                        <td>{{RealizadoPor}}</td>
+                        <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
+                        <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
+                        <td><span class='label yellow radius'>00:00</span></td>
+                        <td>Desarrollo de los componentes de la interfaz de usuario.</td>
+                        <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
+                    </tr>
+                    <tr class='section-content'>
+                        <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
+                        <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
+                        <td><span class='label yellow radius'>00:00</span></td>
+                        <td>Desarrollo de los componentes de la interfaz de usuario.</td>
+                        <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
+                    </tr>
+                    <tr class='section-content'>
+                        <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
+                        <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
+                        <td><span class='label yellow radius'>00:00</span></td>
+                        <td>Desarrollo de los componentes de la interfaz de usuario.</td>
+                        <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -56,7 +73,7 @@
     </section>
 
     
-    <footer id='app-footer' class='container medium center'>
+    <footer class='footer container medium center'>
         <p class='center-text'>
             Trackio! - Time tracking for projects <strong>&copy;</strong> Copyright 2014
         </p>
