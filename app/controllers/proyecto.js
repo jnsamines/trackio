@@ -111,8 +111,7 @@ ProyectoController.prototype.actualizarProyecto = function(request, response){
     // metadatos de tiempo
     var fechaTransaccion = new Date();
     proyecto.fechaModificacion = fechaTransaccion;
-    proyecto.fechaCreacion = fechaTransaccion;
-    
+
     // se modifica la informacion de la solicitud en la entidad encontrada
     proyecto.save(function(error, result){
 
