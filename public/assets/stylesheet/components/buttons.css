@@ -1,0 +1,48 @@
+/*
+    buttons.css
+    Estilos para el componente botones
+*/
+
+.button{
+    display: inline-block;
+    color : #fff;
+    text-align : center;
+    padding : .5em 1em;
+    
+    -webkit-transition : .5s all ease-out;
+       -moz-transition : .5s all ease-out;
+        -ms-transition : .5s all ease-out;
+            transition : .5s all ease-out;
+}
+    .button:hover{
+        -webkit-transition : .5s all ease-in;
+           -moz-transition : .5s all ease-in;
+            -ms-transition : .5s all ease-in;
+                transition : .5s all ease-in;
+    }
+    .button.small{
+        padding: .3em .5em;
+        font-size : .9em;
+    }
+    .button.medium{
+        padding : .5em .8em;
+    }
+    .button.large{
+        padding : .7em 1.1em;
+    }
+
+    .button.skyblue{
+        background-color : #6A9FB5;
+    }
+        .button.skyblue:hover,
+        .button.skyblue:focus{
+            background-color : #468AA3;
+        }
+    
+    .button.green{
+        background-color : #90A959;
+    }
+        .button.green:hover,
+        .button.green:focus{
+            background-color : #94A861; 
+        }

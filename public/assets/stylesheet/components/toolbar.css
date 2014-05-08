@@ -1,0 +1,16 @@
+/*
+    toolbar.css
+    Componente de barra de herramientas
+*/
+
+.toolbar{
+    background-color : #fafafa;
+    color : #666;
+    margin-top : .5em;
+    margin-bottom : .5em;
+    padding : .5em 2em;
+}
+    .toolbar ul{ list-style : none; text-align : left; }
+    .toolbar-item{
+        display : inline-block;
+    }

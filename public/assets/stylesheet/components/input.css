@@ -1,0 +1,19 @@
+/*
+    input.css
+    Componentes de entras de formulario
+*/
+
+input{
+    border : 1px solid #e0e0e0;
+    padding : .5em;
+    outline : none;
+}
+    input.small{
+        width : 160px;
+    }
+    input.medium{
+        width : 280px;
+    }
+    input.large{
+        width : 320px;
+    }

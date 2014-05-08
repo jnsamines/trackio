@@ -1,0 +1,45 @@
+/* 
+    header.css
+    Componente de encabezado de aplicacion
+*/
+
+.header{
+    padding: 0.5em 0;
+    color : #fff;
+}
+    .header a{ color : #fff; }
+    .header .container{
+        overflow: hidden;
+        position : relative; 
+    }
+    .header .title,
+    .header .userbox{
+        display: inline-block;
+        margin : 0;
+        vertical-align : middle;
+    }
+    
+    .header .userbox{
+        cursor : pointer;
+        display : inline-block;
+    }
+        .userbox a,
+        .userbox img{ 
+            display: inline-block; 
+            vertical-align : middle;
+            padding : .4em .5em;
+        }
+
+        .header .userbox img{
+            width : 30px;
+            height : 30px;
+        }
+
+    
+    .header.red{
+        background-color : #AC4142;
+        border-bottom : 2px solid #9B3E3E;
+    }
+        .header.red .userbox{
+            background-color : #9B3E3E;
+        }

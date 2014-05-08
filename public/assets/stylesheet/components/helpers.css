@@ -1,0 +1,32 @@
+/*
+    helpers.css
+    Utilidades varias
+*/
+
+/*   resets  */
+ul { margin : 0; padding: 0; }
+a, a:active, a:focus { text-decoration : none; }
+
+/* utilidades */
+.center{
+    margin : 0 auto;
+}
+
+.left{
+    float : left;
+}
+
+.right{
+    float : right;
+}
+
+.center-text{
+    text-align : center;
+}
+
+.radius{
+    -webkit-border-radius : 2px 2px;
+       -moz-border-radius : 2px 2px;
+        -ms-border-radius : 2px 2px;
+            border-radius : 2px 2px;
+}
