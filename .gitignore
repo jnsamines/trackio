@@ -2,6 +2,7 @@
 # https://help.github.com/articles/ignoring-files
 # Example .gitignore files: https://github.com/github/gitignore
 
+public/assets/javascript/trackio.css
 node_modules/
 public/bower_components
 *.log
