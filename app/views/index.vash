@@ -40,32 +40,19 @@
                         <th>Realizado Por</th>
                     </tr>
                 </thead>
-                <tbody class='section'>
-                    <tr class='section-header'>
+                <tbody class='group'>
+                    <tr class='group-header'>
                         <th colspan='5'>Nombre de Proyecto</th>
                     </tr>
 
-                    <tr class='section-content'>
+                    <tr class='group-content'>
                         <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
                         <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
                         <td><span class='label yellow radius'>00:00</span></td>
                         <td>Desarrollo de los componentes de la interfaz de usuario.</td>
                         <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
                     </tr>
-                    <tr class='section-content'>
-                        <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
-                        <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
-                        <td><span class='label yellow radius'>00:00</span></td>
-                        <td>Desarrollo de los componentes de la interfaz de usuario.</td>
-                        <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
-                    </tr>
-                    <tr class='section-content'>
-                        <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
-                        <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
-                        <td><span class='label yellow radius'>00:00</span></td>
-                        <td>Desarrollo de los componentes de la interfaz de usuario.</td>
-                        <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
-                    </tr>
+                   
                 </tbody>
             </table>
             
