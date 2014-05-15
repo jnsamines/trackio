@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Types = Schema.Types;
 
 var TareaSchema = new Schema({
-    codigoTarea : Types.ObjectId,
     descripcion : {
         type : String
     },

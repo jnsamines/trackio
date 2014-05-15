@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Types = Schema.Types;
 
 var UsuarioSchema = new Schema({
-    codigoUsuario : Types.ObjectId,
     nombreUsuario : {
         type : String,
         required : true,

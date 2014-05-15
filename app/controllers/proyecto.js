@@ -28,6 +28,7 @@ function cargarProyectoDeRequest(request, response, next){
     // se crea una nueva entidad
     var proyecto = new Proyecto();
     proyecto.nombreProyecto = request.body.nombreProyecto;
+    proyecto.descripcionProyecto = request.body.descripcionProyecto;
     proyecto.coordinadorProyecto = request.body.coordinadorProyecto;
 
     // metadatos de tiempo
@@ -45,16 +46,16 @@ function cargarProyectoDeRequest(request, response, next){
 // <param name='next'>funcion de llamada del middleware</param>
 function buscarProyectoPorCodigo(request, response, next){
     var codigoProyecto = request.body.codigoProyecto;
-    
+
     if(codigoProyecto === undefined){
         response.json({ error : 'Código de proyecto no proporcionado.'});
     }
     
     // se busca el proyecto en la base de datos en base al codigo proporcionado
-    Proyecto.findOne({ codigoProyecto : codigoProyecto }, function(error, proyecto){
+    Proyecto.findById(codigoProyecto, function(error, proyecto){
         
         if(error){
-            var message = 'No se pudo actualiza la información del proyecto.';
+            var message = 'Error al realizar la búsqueda del proyecto.';
             logger.error(message, error);
             response.json({ error : message });
         }

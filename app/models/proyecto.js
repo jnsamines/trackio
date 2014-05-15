@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Types = Schema.Types;
 
 var ProyectoSchema = new Schema({
-    codigoProyecto : Types.ObjectId,
     nombreProyecto : {
         type : String,
         required : true
