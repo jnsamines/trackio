@@ -1,14 +1,28 @@
+// trackio.js
+// Módulo lanzador de la aplicación
+// Author : Jonathan Samines
 
-// Objeto global de la aplicacion Trackio
-var Trackio = {
-    models : {},
-    views : {},
-    routers : {}
-};
-
-
-// se inicializa la aplicacion
-$(document).on('ready', function(){
-
+// configuracion de require
+require.config({
+    paths : {
+        // external dependencies
+        'jquery' : '../../bower_components/jquery/dist/jquery',
+        'underscore' : '../../bower_components/underscore/underscore',
+        'backbone' : '../../bower_components/backbone/backbone',
+        'handlebars' : '../../bower_components/handlebars/handlebars'
+    }
 });
+
+
+var dependencies = ['jquery', 'backbone', 'views/proyecto'];
+
+require(dependencies, function($, Backbone, ProyectoView){
+    $(document).on('ready', function(){
+        
+        var proyectoView = new ProyectoView();
+        proyectoView.render();
+    });
+});
+
+
 

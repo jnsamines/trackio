@@ -5,6 +5,8 @@
     <title>@model.title</title>
     <link rel='stylesheet' href='bower_components/normalize.css/normalize.css' />
     <link rel='stylesheet' href='assets/stylesheet/trackio.css' />
+    
+    <script data-main='assets/javascript/trackio' src='bower_components/requirejs/require.js'></script>
 </head>
 <body>
 
@@ -24,7 +26,7 @@
         
         <nav class='toolbar center'>
             <input name='textElemento' placeholder='Ingrese el nombre del proyecto' class='medium radius'>
-            <a class='button medium radius skyblue right' href='#'>Nuevo Proyecto + </a>
+            <a class='button medium radius skyblue right' href='#'>Nuevo Proyecto +</a>
         </nav>
         
         <section class='container center'>
@@ -40,20 +42,26 @@
                         <th>Realizado Por</th>
                     </tr>
                 </thead>
-                <tbody class='group'>
-                    <tr class='group-header'>
-                        <th colspan='5'>Nombre de Proyecto</th>
-                    </tr>
+                
+                <script id='proyectos_template' type='text/x-handlebars-template'>
+                    <!-- Plantilla de la tabla principal de proyectos -->
+                    <tbody class='group'>
+                        <tr class='group-header'>
+                            <th colspan='5'>{{nombreProyecto}}</th>
+                        </tr>
 
-                    <tr class='group-content'>
-                        <td><a href='#linkto-task' class='button link' title='Tarea #001001'>001001</a></td>
-                        <td><a href='#linkto-task' class='button link'>Desarrollo de interfaz de usuario</a></td>
-                        <td><span class='label yellow radius'>00:00</span></td>
-                        <td>Desarrollo de los componentes de la interfaz de usuario.</td>
-                        <td><a href='#usuario' class='button link' title='Usuario'>@@usuario</a></td>
-                    </tr>
-                   
-                </tbody>
+                        <tr class='group-content'>
+                            <td><a href='#linkto-task' class='button link' title='Tarea #001001'>{{}}</a></td>
+                            <td><a href='#linkto-task' class='button link'></a></td>
+                            <td><span class='label yellow radius'>00:00</span></td>
+                            <td>Desarrollo de los componentes de la interfaz de usuario.</td>
+                            <td><a href='#usuario' class='button link' title='Usuario'></a></td>
+                        </tr>
+
+                    </tbody>
+                </script>
+                
+                
             </table>
             
         </section>
@@ -66,11 +74,5 @@
         </p>
     </footer>
     
-    <script src='bower_components/jquery/dist/jquery.js'></script>
-    <script src='bower_components/underscore/underscore.js'></script>
-    <script src='bower_components/backbone/backbone.js'></script>
-    <script src='bower_components/handlebars/handlebars.js'></script>
-    
-    <script src='assets/javascript/trackio.js'></script>
-</body>
+    </body>
 </html>
