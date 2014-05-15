@@ -108,6 +108,8 @@ ProyectoController.prototype.actualizarProyecto = function(request, response){
     
     var proyecto = request.proyecto;
     proyecto.nombreProyecto = request.body.nombreProyecto;
+    proyecto.descripcionProyecto = request.body.descripcionProyecto;
+    proyecto.coordinadorProyecto = requet.body.coordinadorProyecto;
     
     // metadatos de tiempo
     var fechaTransaccion = new Date();
