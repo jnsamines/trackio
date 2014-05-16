@@ -43,30 +43,32 @@
                     </tr>
                 </thead>
                 
-                <script id='proyectos_template' type='text/x-handlebars-template'>
-                    <!-- Plantilla de la tabla principal de proyectos -->
-                    <tbody class='group'>
-                        <tr class='group-header'>
-                            <th colspan='5'>{{nombreProyecto}}</th>
-                        </tr>
-
-                        <tr class='group-content'>
-                            <td><a href='#linkto-task' class='button link' title='Tarea #001001'>{{}}</a></td>
-                            <td><a href='#linkto-task' class='button link'></a></td>
-                            <td><span class='label yellow radius'>00:00</span></td>
-                            <td>Desarrollo de los componentes de la interfaz de usuario.</td>
-                            <td><a href='#usuario' class='button link' title='Usuario'></a></td>
-                        </tr>
-
-                    </tbody>
-                </script>
-                
-                
+                <tbody class="group">                
+                    
+                </tbody>
             </table>
-            
         </section>
     </section>
 
+    
+    <script id='proyectos_template' type='text/x-handlebars-template'>
+        <!-- Plantilla de la tabla principal de proyectos -->
+        {{#each this}}
+            
+            <tr class='group-header'>
+                <th colspan='5'>{{nombreProyecto}}</th>
+            </tr>
+
+            <tr class='group-content'>
+                <td><a href='#linkto-task' class='button link' title='Tarea #001001'>Tarea #0000</a></td>
+                <td><a href='#linkto-task' class='button link'></a></td>
+                <td><span class='label yellow radius'>00:00</span></td>
+                <td>Desarrollo de los componentes de la interfaz de usuario.</td>
+                <td><a href='#usuario' class='button link' title='Usuario'></a></td>
+            </tr>
+            
+        {{/each}}
+    </script>
     
     <footer class='footer container medium center'>
         <p class='center-text'>

@@ -2,23 +2,23 @@
 // Vista para la entidad Proyecto
 // Author : Jonathan Samines [jnsamines]
 
-var dependencies = ['jquery', 'backbone', 'handlebars', 'controllers/proyecto'];
+var dependencies = ['jquery', 'backbone', 'handlebars', 'collections/proyecto'];
 
-define(dependencies, function($, Backbone, Handlebars, ProyectoController){
-    
+define(dependencies, function($, Backbone, Handlebars, ProyectoCollection){
+
     var ProyectoView = Backbone.View.extend({
-        id : '',
-        template : Handlebars.compile($('#proyectos_template')),
+        template : Handlebars.compile($('#proyectos_template').html()),
+        el : '.table .group',
         render : function(){
-            
+            var $this = this;
             var proyectos = new ProyectoCollection();
             var result = proyectos.fetch();
             result.complete(function(){
-                console.log(proyectos);
-                this.$el.html(this.template(proyectos));
+                $this.$el.html($this.template(proyectos.toJSON()));
             });
             
         }
     });
     
+    return ProyectoView;
 });
