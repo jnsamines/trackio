@@ -92,7 +92,7 @@ TareaController.prototype.middleware.buscarTareaPorCodigo = function (request, r
 // <param name='response'>respuesta http</param>
 TareaController.prototype.obtenerTareas = function(request, response){
     var codigoProyecto = request.params.codigoProyecto;
-    Tarea.find({ proyecto : codigoProyecto },function(error, tareas){
+    Tarea.find().populate('usuario').exec({ proyecto : codigoProyecto },function(error, tareas){
         if(error){
             var message = 'Error al obtener las tareas de la base de datos';
             logger.error(message, error);
