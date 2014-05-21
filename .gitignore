@@ -6,3 +6,4 @@ public/assets/stylesheet/trackio.css
 node_modules/
 public/bower_components
 *.log
+.idea/
