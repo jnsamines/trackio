@@ -24,6 +24,10 @@ var TareaSchema = new Schema({
         ref : 'Usuario',
         required : true
     },
+    tiempo : {
+        type : Number,
+        required : true
+    },
     fechaIngreso : {
         type : Date,
         required : true

@@ -7,16 +7,20 @@ var logger = require('../config/logger'),
 
 // Mapper de rutas para la entidad Proyecto
 var ProyectoController = function(root, router){
+    this.root = root;
     this.router = router;
-    this.mapper = router.route(root);
 };
 
 // Mapea las rutas correspondientes al Mapper
 ProyectoController.prototype.map = function(){
-    this.mapper.get(this.obtenerProyectos);
-    this.mapper.post(cargarProyectoDeRequest, this.crearProyecto);
-    this.mapper.put(buscarProyectoPorCodigo, this.actualizarProyecto);
-    this.mapper.delete(buscarProyectoPorCodigo, this.eliminarProyecto);
+    this.router.route(this.root)
+        .get(this.obtenerProyectos)
+        .post(cargarProyectoDeRequest, this.crearProyecto);
+
+    this.router.route(this.root + '/:codigoProyecto')
+        .get(buscarProyectoPorCodigo, this.obtenerProyecto)
+        .put(buscarProyectoPorCodigo, this.actualizarProyecto)
+        .delete(buscarProyectoPorCodigo, this.eliminarProyecto);
 };
 
 // Crea una nueva instancia de un proyecto a partir de la información del request
@@ -45,7 +49,7 @@ function cargarProyectoDeRequest(request, response, next){
 // <param name='response'>respuesta http</param>
 // <param name='next'>funcion de llamada del middleware</param>
 function buscarProyectoPorCodigo(request, response, next){
-    var codigoProyecto = request.body.codigoProyecto;
+    var codigoProyecto = request.params.codigoProyecto;
 
     if(codigoProyecto === undefined){
         response.json({ error : 'Código de proyecto no proporcionado.'});
@@ -53,13 +57,13 @@ function buscarProyectoPorCodigo(request, response, next){
     
     // se busca el proyecto en la base de datos en base al codigo proporcionado
     Proyecto.findById(codigoProyecto, function(error, proyecto){
-        
+
         if(error){
             var message = 'Error al realizar la búsqueda del proyecto.';
             logger.error(message, error);
             response.json({ error : message });
         }
-        
+
         // se guarda la entidad encontrada en la solicitud del mensaje
         request.proyecto = proyecto;
         
@@ -72,15 +76,25 @@ function buscarProyectoPorCodigo(request, response, next){
 // <param name='response'>Respuesta http</param>
 ProyectoController.prototype.obtenerProyectos = function(request, response){
     
-    Proyecto.find().populate('coordinadorProyecto').exec(function(error, proyectos){
-        if(error){
+    Proyecto.find()
+        .populate('coordinadorProyecto')
+        .populate('tareas')
+        .exec(function(error, proyectos){
             var message = 'Error al obtener el listado de proyectos.';
-            logger.error(message, error);
-            response.json({ error : message });
-        }
-        
-        response.json(proyectos);
+
+            if(error){
+                logger.error(message, error);
+                response.json({ error : message });
+            }
+            response.json(proyectos);
     });
+};
+
+// Obtiene el detalle de un proyecto en base a su identificador
+// <param name='request'>solicitud http</param>
+// <param name='response'>respuesta http</param>
+ProyectoController.prototype.obtenerProyecto = function(request, response){
+    response.json(request.proyecto);
 };
 
 // Crea un nuevo registro en la base de datos
@@ -107,13 +121,12 @@ ProyectoController.prototype.crearProyecto = function(request, response){
 ProyectoController.prototype.actualizarProyecto = function(request, response){
     
     var proyecto = request.proyecto;
-    proyecto.nombreProyecto = request.body.nombreProyecto;
-    proyecto.descripcionProyecto = request.body.descripcionProyecto;
-    proyecto.coordinadorProyecto = requet.body.coordinadorProyecto;
+    proyecto.nombreProyecto = request.body.nombreProyecto || proyecto.nombreProyecto;
+    proyecto.descripcionProyecto = request.body.descripcionProyecto || proyecto.descripcionProyecto;
+    proyecto.coordinadorProyecto = request.body.coordinadorProyecto || proyecto.coordinadorProyecto;
     
     // metadatos de tiempo
-    var fechaTransaccion = new Date();
-    proyecto.fechaModificacion = fechaTransaccion;
+    proyecto.fechaModificacion = new Date();
 
     // se modifica la informacion de la solicitud en la entidad encontrada
     proyecto.save(function(error, result){
@@ -130,6 +143,8 @@ ProyectoController.prototype.actualizarProyecto = function(request, response){
 };
 
 // Elimina una instancia del proyecto especificado en la base de datos.
+// <param name='request'>solicitud http</param>
+// <param name='response'>respuesta http</param>
 ProyectoController.prototype.eliminarProyecto = function(request, response){
     var proyecto = request.proyecto;
     

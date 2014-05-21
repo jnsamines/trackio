@@ -11,6 +11,10 @@ var ProyectoSchema = new Schema({
         type : String,
         required : true
     },
+    tareas : [{
+        type : Types.ObjectId,
+        ref  : 'Tarea'
+    }],
     descripcionProyecto : String,
     coordinadorProyecto : { 
         type : Types.ObjectId, 
