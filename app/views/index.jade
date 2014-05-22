@@ -1,0 +1,66 @@
+doctype html
+html(lang='es')
+    head
+        meta(charset='UTF-8')
+        title= title
+
+        // application styles
+        link(rel='stylesheet', href='bower_components/normalize.css/normalize.css')
+        link(rel='stylesheet', href='assets/stylesheet/trackio.css')
+
+        // application front controller
+        script(data-main='assets/javascript/trackio', src='bower_components/requirejs/require.js')
+    body
+        // header component
+        header.header.red
+            .container.medium.center
+                h1.title.left
+                    a(href='/', title=title)= title
+                nav.userbox.right
+                    img(src='https://avatars1.githubusercontent.com/u/1268268?s=140')
+                    a(href='#', title='Jonathan Samines') Jonathan Samines
+
+        // content component
+        section.application.container.medium.center
+
+            // application toolbar
+            nav.toolbar.center
+                input.medium.radius(name='textElemento', placeholder='Ingrese el nombre del proyecto')
+                a.button.medium.radius.skyblue.right(href='#') Nuevo Proyecto +
+
+            // content
+            section.container.center
+                table.table.center.large
+                    caption Seguimiento de Proyectos
+                    thead
+                        tr
+                            th Codigo Tarea
+                            th Tarea
+                            th Tiempo
+                            th Realizado Por
+                    tbody.group
+
+        // templates
+        // template for proyect list display
+        script#proyectos_template(type='text/x-handlebars-template').
+            {{#each this}}
+                <tr class='group-header'>
+                    <th colspan='3'> {{nombreProyecto}}</th>
+                    <th><span class='label lightgray radius right'>{{totalHorasProyecto this.tareas}} horas.</span></th>
+                </tr>
+                {{#each this.tareas}}
+                    <tr class='group-content'>
+                        <td><a href='#' class='button link'>{{_id}}</a></td>
+                        <td>{{descripcion}}</td>
+                        <td><span class='label yellow radius'>{{tiempo}}</span></td>
+                        <td><a href='#' class='button link'>{{usuario}}</a></td>
+                    </tr>
+                {{/each}}
+            {{/each}}
+
+        // footer
+        footer.footer.container.medium.center
+            p.center-text
+                | Trackio! - Time tracking for projects
+                strong ©
+                | Copyright 2014

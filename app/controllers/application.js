@@ -18,7 +18,7 @@ ApplicationController.prototype.map = function(){
 
 // Ruta '/home' de la aplicacion
 ApplicationController.prototype.home = function(request, response){
-    response.render('index', { title : 'Tracker!'});
+    response.render('index', { title : 'Track.io'});
 };
 
 

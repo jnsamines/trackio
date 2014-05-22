@@ -42,7 +42,7 @@ application.use(bodyParser());
 application.use(express.static(path.join(__dirname, '/public')));
 
 application.set('views', path.join(__dirname, '/app/views'));
-application.set('view engine', 'vash');
+application.set('view engine', 'jade');
 
 // configuracion de router
 var apiRouter = express.Router(),
