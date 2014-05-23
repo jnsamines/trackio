@@ -2,33 +2,27 @@
 // Vista para la entidad Proyecto
 // Author : Jonathan Samines [jnsamines]
 
-var dependencies = ['jquery', 'backbone', 'handlebars', 'collections/proyecto'];
+var dependencies = ['jquery', 'handlebars','helpers/observable'];
 
-define(dependencies, function($, Backbone, Handlebars, ProyectoCollection){
+define(dependencies, function($, Handlebars, Observable){
 
-    // register helper
-    Handlebars.registerHelper('totalHorasProyecto',function(tareas, context){
-        var total = 0;
-        tareas.forEach(function(tarea){
-            total += tarea.tiempo;
-        });
-        return total;
-    });
+    var ProyectoView = function(){
+        // view components
+        this.components = {};
+        this.components.$root = $('#proyectos_container');
+        this.components.$template = $('#proyectos_template');
+        this.components.template = Handlebars.compile(this.components.$template.html());
+        this.components.$container = $('.table .group');
+    };
 
+    ProyectoView.prototype = new Observable();
 
-    var ProyectoView = Backbone.View.extend({
-        template : Handlebars.compile($('#proyectos_template').html()),
-        el : '.table .group',
-        render : function(){
-            var $this = this;
-            var proyectos = new ProyectoCollection();
-            var result = proyectos.fetch();
-            result.complete(function(){
-                $this.$el.html($this.template(proyectos.toJSON()));
-            });
-            
-        }
-    });
+    ProyectoView.prototype.render = function(data){
+        var compiledTemplate = this.components.template(data);
+        this.components.$root.html(compiledTemplate);
+
+        this.trigger('render');
+    };
     
     return ProyectoView;
 });

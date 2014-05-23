@@ -2,19 +2,19 @@
 // Modelo de datos backbone
 // Author : Jonathan Samines [jnsamines]
 
-var dependencies = ['backbone'];
+define(['core/model'], function(Model){
 
-define(dependencies , function(Backbone){
-    var Proyecto = Backbone.Model.extend({
-        defaults : {
-            codigoProyecto : 0,
-            nombreProyecto : '',
-            coordinadorProyecto : {}
-        },
-        initialize : function(){
-            console.log("Modelo Proyecto Inicializado");
-        }
-    });
-    
+    // Proyecto data model
+    var Proyecto = function(options){
+        options = options || {};
+        this.nombreProyecto = options.nombreProyecto || '';
+        this.descripcionProyecto = options.descripcionProyecto || '';
+        this.coordinadorProyecto = options.coordinadorProyecto || '';
+        this.fechaCreacion = options.fechaCreacion || '';
+        this.fechaModificacion = options.fechaModificacion || '';
+    };
+
+    Proyecto.prototype = new Model();
+
     return Proyecto;
 });

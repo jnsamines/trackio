@@ -16,14 +16,16 @@ require.config({
     }
 });
 
-
-var dependencies = ['jquery', 'backbone', 'views/proyecto'];
-
-require(dependencies, function($, Backbone, ProyectoView){
+require(['jquery', 'helpers/template', 'controllers/proyecto'], function($, TemplateHelper, ProyectoController){
     $(document).on('ready', function(){
-        
-        var proyecto = new ProyectoView();
-        proyecto.render();
+
+        // register handlebars helpers
+        var helper = new TemplateHelper();
+        helper.registerHelpers();
+
+        // main view
+        var proyecto = new ProyectoController();
+        proyecto.sync({ validate : false });
     });
 });
 
