@@ -28,13 +28,13 @@ define(['helpers/observable'], function(Observable){
     // <param name='validate'>suggest if a property should throw validation events.</param>
     // <param name='triggerChangeEvents'>Indicates if should trigger changing events</param>
     function changePropertyValue(property, value, validate, triggerChangeEvents){
-        var self = this, valid = true;
+        var self = this, valid = true, oldValue = self[property];
 
         // only throw events if validation is enabled
         if(validate === true || validate === undefined) {
 
             // report property validation event
-            var results = self.trigger(getValidateEvent(property), property, self[property]);
+            var results = self.trigger(getValidateEvent(property), property, oldValue);
 
             // verify if all validation events results valid
             for (var r = 0; r <= results.length - 1; r++) {
@@ -48,7 +48,7 @@ define(['helpers/observable'], function(Observable){
         // change property value
         self[property] = value;
 
-        if(triggerChangeEvents === true || triggerChangeEvents === undefined){
+        if( ( triggerChangeEvents === true || triggerChangeEvents === undefined ) && oldValue !== value){
             // report value changed
             self.trigger( getChangeEvent(property), property, value);
             self.trigger( changeEventName , property, value );
