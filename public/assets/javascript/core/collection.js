@@ -40,18 +40,28 @@ define(['jquery', 'core/model', 'helpers/observable'], function($, Model, Observ
         this.trigger(addEventName, model);
     };
 
+    // Removes an element at specified index
+    // <param name='index'>Index to remove from collection</param>
+    Collection.prototype.removeAt = function(index){
+        if(index !== -1) {
+            var modelRemoved = this.collection.splice(index, 1);
+            this.trigger(removeEventName, modelRemoved);
+        }
+    };
+
     // Removes an element from collection
     // <param name='model'>model to remove</param>
     Collection.prototype.remove = function(model){
-        var index = this.collection.indexOf(model),
-            modelRemoved = this.collection.splice(index, 1);
-        this.trigger(removeEventName, modelRemoved);
+        var index = this.collection.indexOf(model);
+        this.removeAt(index);
     };
 
     // Empty collection
     Collection.prototype.clear = function(){
-        for(var i = 0; i <= this.collection.length - 1; i++){
-            this.remove( this.collection[i] );
+        var elements =  this.collection.length - 1;
+
+        for(var i = elements; i >= 0; i--){
+            this.removeAt(i);
         }
 
         this.trigger(clearEventName);
@@ -74,6 +84,10 @@ define(['jquery', 'core/model', 'helpers/observable'], function($, Model, Observ
 
         // fetching success
         result.done(function(models){
+            // clear elements
+            self.clear();
+
+            // add collection of models or single model
             if(Array.isArray(models)){
                 for(var m = 0; m <= models.length - 1; m++){
                     var model = models[m];
