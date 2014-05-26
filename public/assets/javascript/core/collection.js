@@ -40,6 +40,14 @@ define(['jquery', 'core/model', 'helpers/observable'], function($, Model, Observ
         this.trigger(addEventName, model);
     };
 
+    // Gets the element at the specified index
+    // <param name='model'>Gets the specified model from collection</param>
+    Collection.prototype.get = function(model){
+        var index = this.collection.indexOf(model);
+
+        return this.collection[index];
+    };
+
     // Removes an element at specified index
     // <param name='index'>Index to remove from collection</param>
     Collection.prototype.removeAt = function(index){
@@ -84,18 +92,14 @@ define(['jquery', 'core/model', 'helpers/observable'], function($, Model, Observ
 
         // fetching success
         result.done(function(models){
-            // clear elements
             self.clear();
 
             // add collection of models or single model
             if(Array.isArray(models)){
                 for(var m = 0; m <= models.length - 1; m++){
-                    var model = models[m];
-
-                    self.add( new self.model(model));
+                    var model = models[m], element;
+                    self.add(new self.model(model));
                 }
-            }else{
-                self.add(models);
             }
 
             // throw fetched success

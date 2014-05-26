@@ -20,7 +20,7 @@ define(['core/model'], function(Model){
         },
         events : {
             'change' : function(property, value){
-                console.log('El valor del la propiedad ' + property  + " ha cambiado a " + value);
+                //console.log('El valor del la propiedad ' + property  + " ha cambiado a " + value);
             }
         }
     });
