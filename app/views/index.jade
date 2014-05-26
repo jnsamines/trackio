@@ -9,6 +9,7 @@ html(lang='es')
         link(rel='stylesheet', href='assets/stylesheet/trackio.css')
 
         // application front controller
+        script(src='bower_components/pace/pace.js')
         script(data-main='assets/javascript/trackio', src='bower_components/requirejs/require.js')
     body
         // header component
@@ -26,7 +27,7 @@ html(lang='es')
             // application toolbar
             nav.toolbar.center
                 input.medium.radius(name='textElemento', placeholder='Ingrese el nombre del proyecto')
-                a.button.medium.radius.skyblue.right(href='#') Nuevo Proyecto +
+                a#buttonNuevoProyecto.button.medium.radius.skyblue.right(href='#') Nuevo Proyecto +
 
             // content
             section.container.center

@@ -19,7 +19,8 @@ module.exports = function(grunt){
                     '<%= dirs.css %>/components/input.css',
                     '<%= dirs.css %>/components/tables.css',
                     '<%= dirs.css %>/components/labels.css',
-                    '<%= dirs.css %>/components/toolbar.css'
+                    '<%= dirs.css %>/components/toolbar.css',
+                    '<%= dirs.css %>/components/topbar.css'
                 ] ,
                 dest : './public/assets/stylesheet/trackio.css'
             }
