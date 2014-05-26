@@ -5,16 +5,25 @@
 define(['core/model'], function(Model){
 
     // Proyecto data model
-    var Proyecto = function(options){
-        options = options || {};
-        this.nombreProyecto = options.nombreProyecto || '';
-        this.descripcionProyecto = options.descripcionProyecto || '';
-        this.coordinadorProyecto = options.coordinadorProyecto || '';
-        this.fechaCreacion = options.fechaCreacion || '';
-        this.fechaModificacion = options.fechaModificacion || '';
+    var Proyecto = function(properties){
+        this.set(properties, false);
+        this.initialize(arguments);
     };
 
-    Proyecto.prototype = new Model();
+    Proyecto.prototype = new Model({
+        defaults : {
+            nombreProyecto : 'Proyecto Template',
+            descripcionProyecto : 'Base template for proyect model',
+            coordinadorProyecto : '',
+            fechaCreacion : new Date(),
+            fechaModificacion : new Date()
+        },
+        events : {
+            'change' : function(property, value){
+                console.log('El valor del la propiedad ' + property  + " ha cambiado a " + value);
+            }
+        }
+    });
 
     return Proyecto;
 });

@@ -16,7 +16,7 @@ require.config({
     }
 });
 
-require(['jquery', 'helpers/template', 'controllers/proyecto'], function($, TemplateHelper, ProyectoController){
+require(['jquery', 'helpers/template', 'views/proyecto'], function($, TemplateHelper, ProyectoView){
     $(document).on('ready', function(){
 
         // register handlebars helpers
@@ -24,8 +24,8 @@ require(['jquery', 'helpers/template', 'controllers/proyecto'], function($, Temp
         helper.registerHelpers();
 
         // main view
-        var proyecto = new ProyectoController();
-        proyecto.sync({ validate : false });
+        var proyecto = new ProyectoView();
+        proyecto.init();
     });
 });
 

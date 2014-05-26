@@ -45,7 +45,6 @@ define(function(){
 
             if(suscriber.callback == callback && suscriber.context == context){
                 suscribers.splice(s, 1);
-                console.log('unscribed at position ' + s);
                 return this;
             }
         }
