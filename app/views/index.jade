@@ -14,7 +14,7 @@ html(lang='es')
     body
         // header component
         header.header.red
-            .container.medium.center
+            .container.center
                 h1.title.left
                     a(href='/', title=title)= title
                 nav.userbox.right
@@ -22,11 +22,11 @@ html(lang='es')
                     a(href='#', title='Jonathan Samines') Jonathan Samines
 
         // content component
-        section.application.container.medium.center
+        section.application.container.center
 
             // application toolbar
             nav.toolbar.center
-                input.medium.radius(name='textElemento', placeholder='Ingrese el nombre del proyecto')
+                input.medium.radius(type='text',name='textElemento', placeholder='Ingrese el nombre del proyecto')
                 a#buttonNuevoProyecto.button.medium.radius.skyblue.right(href='#') Nuevo Proyecto +
 
             // content

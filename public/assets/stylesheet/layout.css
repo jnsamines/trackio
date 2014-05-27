@@ -15,16 +15,27 @@ html, body{
     display : block;
     overflow: hidden;
 }
-    .container.medium{
-        max-width : 61rem; 
+
+/* application styles */
+    .application{
+        background-color : #fff;
+        max-width : 61rem;
+        min-height : 700px;
     }
 
-.application{
-    background-color : #fff;
-    min-height : 700px;
-}
+    .loginbox{
+        background-color : #fff;
+        border-top : 4px solid #666;
 
-.footer{
-    margin-top: 30px;
-    margin-bottom : 30px;
-}
+        margin-top : 10rem;
+        max-width : 25rem;
+        min-height : 250px;
+        padding : 1em;
+
+        -webkit-box-shadow : 4px 5px 14px #ddd;
+    }
+
+    .footer{
+        margin-top: 30px;
+        margin-bottom : 30px;
+    }

@@ -9,7 +9,8 @@ a, a:active, a:focus { text-decoration : none; color : #4183C4; }
 
 /* utilidades */
 .center{
-    margin : 0 auto;
+    margin-left : auto;
+    margin-right : auto;
 }
 
 .left{

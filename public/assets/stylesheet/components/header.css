@@ -9,8 +9,9 @@
 }
     .header a{ color : #fff; }
     .header .container{
+        max-width : 61rem;
         overflow: hidden;
-        position : relative; 
+        position : relative;
     }
     .header .title,
     .header .userbox{

@@ -3,17 +3,41 @@
     Componentes de entras de formulario
 */
 
-input{
+form{ }
+form input,
+form label{
+    display : block;
+}
+
+form label{ margin-top : .3em; }
+
+input[type='text'],
+input[type='password'],
+input[type='email']{
     border : 1px solid #e0e0e0;
     padding : .5em;
+    margin-top : .5em;
+    margin-bottom : .5em;
     outline : none;
 }
-    input.small{
-        width : 160px;
-    }
-    input.medium{
-        width : 280px;
-    }
-    input.large{
-        width : 320px;
-    }
+
+input[type='text'].small,
+input[type='password'].small,
+input[type='email'].small{
+    max-width : 10rem;
+    width : 98%;
+}
+
+input.medium[type='text'],
+input.medium[type='password'],
+input.medium[type='email']{
+    max-width : 16rem;
+    width : 98%;
+}
+
+input.large[type='text'],
+input.large[type='password'],
+input.large[type='email']{
+    min-width : 22rem;
+    width : 95%;
+}

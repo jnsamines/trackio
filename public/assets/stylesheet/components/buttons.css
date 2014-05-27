@@ -7,18 +7,15 @@
     display: inline-block;
     color : #fff;
     text-align : center;
+    border : none;
     padding : .5em 1em;
-    
-    -webkit-transition : .5s all ease-out;
-       -moz-transition : .5s all ease-out;
-        -ms-transition : .5s all ease-out;
-            transition : .5s all ease-out;
 }
-    .button:hover{
-        -webkit-transition : .5s all ease-in;
-           -moz-transition : .5s all ease-in;
-            -ms-transition : .5s all ease-in;
-                transition : .5s all ease-in;
+    .button:hover, .button:focus{
+        outline : none;
+        -webkit-transition : .5s all ease;
+           -moz-transition : .5s all ease;
+            -ms-transition : .5s all ease;
+                transition : .5s all ease;
     }
     .button.small{
         padding: .3em .5em;
