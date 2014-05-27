@@ -12,11 +12,13 @@ html(lang='es')
                     a(href='#', title='Trackio') Trackio
             div
                 form#formInicioSesion.clearfix(method='post', action='/login')
-                    label(for='email') Correo Electrónico
-                    input.large(type='email', name='email', id='email', placeholder='Correo electrónico', required)
+                    label(for='username') Usuario
+                    input.large(type='text', name='username', id='username', placeholder='Nombre de Usuario', required)
 
                     label(for='password') Contraseña
                     input.large(type='password', name='password', id='password', placeholder='Contraseña', required)
+
+                    span=message
 
                     input.button.medium.green.radius.right(type='submit', value='Iniciar Sesión')
 

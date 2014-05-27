@@ -2,7 +2,7 @@ doctype html
 html(lang='es')
     head
         meta(charset='UTF-8')
-        title= title
+        title #{title}
 
         // application styles
         link(rel='stylesheet', href='bower_components/normalize.css/normalize.css')
@@ -16,10 +16,11 @@ html(lang='es')
         header.header.red
             .container.center
                 h1.title.left
-                    a(href='/', title=title)= title
+                    a(href='/', title='#{title}') #{title}
                 nav.userbox.right
-                    img(src='https://avatars1.githubusercontent.com/u/1268268?s=140')
-                    a(href='#', title='Jonathan Samines') Jonathan Samines
+                    img(src='#{usuario.gravatar}?size=30')
+                    a(href='/usuario/#{usuario.nombreUsuario}', title='#{usuario.nombreUsuarioCompleto}') #{usuario.nombreUsuarioCompleto}
+                    a(href='/logout', title='Cerrar Sesión') Cerrar Sesión
 
         // content component
         section.application.container.center
