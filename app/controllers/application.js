@@ -8,17 +8,22 @@
 // <param name='router'>Router principal de la aplicacion</param>
 var ApplicationController = function(root, router){
     this.router = router;
-    this.mapper = router.route(root);
+    this.root = root;
 };
 
 // Carga los bindins de las rutas de la aplicacion
 ApplicationController.prototype.map = function(){
-    this.mapper.get( this.home );
+    this.router.route( this.root ).get( this.home );
+    this.router.route( this.root + '/login' ).get( this.login );
 };
 
 // Ruta '/home' de la aplicacion
 ApplicationController.prototype.home = function(request, response){
-    response.render('index', { title : 'Track.io'});
+    response.render('index', { title : 'Trackio'});
+};
+
+ApplicationController.prototype.login = function(request, response){
+    response.render('login', { title : 'Trackio - Inicio de Sesión'});
 };
 
 

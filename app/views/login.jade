@@ -1,0 +1,24 @@
+doctype html
+html(lang='es')
+    head
+        meta(charset='utf-8')
+        title=title
+        link(rel='stylesheet', href='bower_components/normalize.css/normalize.css')
+        link(rel='stylesheet', href='assets/stylesheet/trackio.css')
+    body
+        section.loginbox.container.center.radius
+            header
+                h1
+                    a(href='#', title='Trackio') Trackio
+            div
+                form#formInicioSesion.clearfix(method='post', action='/login')
+                    label(for='email') Correo Electrónico
+                    input.large(type='email', name='email', id='email', placeholder='Correo electrónico', required)
+
+                    label(for='password') Contraseña
+                    input.large(type='password', name='password', id='password', placeholder='Contraseña', required)
+
+                    input.button.medium.green.radius.right(type='submit', value='Iniciar Sesión')
+
+
+
