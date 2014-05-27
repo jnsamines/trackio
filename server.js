@@ -7,7 +7,10 @@ var http        = require('http'),
     bodyParser  = require('body-parser'),
     express     = require('express'),
     path        = require('path'),
-    mongoose    = require('mongoose');
+    mongoose    = require('mongoose'),
+    session     = require('express-session'),
+    cookieParser = require('cookie-parser'),
+    MongoStore  = require('connect-mongo')(session);
 
 var config   = require('./app/config/config'),
     logger   = require('./app/config/logger'),
@@ -40,6 +43,16 @@ logger.debug('Servidor iniciado en el puerto : ' + appSettings.port);
 // configuracion de middleware
 application.use(bodyParser());
 application.use(express.static(path.join(__dirname, '/public')));
+
+application.use(cookieParser());
+application.use(session({
+    store :  new MongoStore({
+        db : appSettings.database.database,
+        host : appSettings.database.host,
+        port : appSettings.database.port
+    }),
+    secret : 'haki reiatsu ki'
+}));
 
 application.set('views', path.join(__dirname, '/app/views'));
 application.set('view engine', 'jade');
