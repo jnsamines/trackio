@@ -33,7 +33,7 @@ var UsuarioSchema = new Schema({
 });
 
 UsuarioSchema.virtual('nombreUsuarioCompleto').get(function(){
-    return this.nombreCompleto + this.apellidoCompleto;
+    return this.nombreCompleto + ' ' + this.apellidoCompleto;
 });
 
 UsuarioSchema.virtual('gravatar').get(function(){
