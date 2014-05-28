@@ -2,13 +2,24 @@
 // Middleware para la autenticación de la sesión
 // Author : Jonathan Samines [jnsamines]
 
-module.exports = function(request, response, next){
-    // si no existe objeto de sesión
-    if(request.session === undefined) response.redirect('/login');
+var authentication = {};
 
+// Middleware utilizado cuando se requiera autorización en una página
+authentication.authorized = function(request, response, next){
     // si no hay un usuario definido, redireccionamos a la página de login
     // con estado NOT_AUTHORIZED
-    if(request.session.usuario === undefined) response.redirect('/login');
-
-    next();
+    if(request.session.usuario === undefined)
+        response.redirect('/login');
+    else
+        next();
 };
+
+// Middleware utilizado cuando se permite el acceso sin autenticación
+authentication.anonymous = function(request, response, next){
+    if(request.session.usuario !== undefined)
+        response.redirect('/');
+    else
+        next();
+};
+
+module.exports = authentication;

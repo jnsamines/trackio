@@ -2,7 +2,7 @@
 // Controlador principal para las rutas estáticas de la aplicacion
 // Author : Jonathan Samines [jnsamines]
 
-var authentication = require('../helpers/authentication'),
+var auth = require('../helpers/authentication'),
     logger = require('../config/logger'),
     Usuario = require('../models/usuario');
 
@@ -17,11 +17,11 @@ var ApplicationController = function(root, router){
 // Carga los bindins de las rutas de la aplicacion
 ApplicationController.prototype.map = function(){
     // root
-    this.router.route( this.root ).get( authentication, this.home );
+    this.router.route( this.root ).get( auth.authorized, this.home );
 
     // rutas de logueo
     this.router.route( this.root + '/login' )
-        .get( this.loginview )
+        .get( auth.anonymous, this.loginview )
         .post( this.login );
 
     this.router.route( this.root + '/logout' )
