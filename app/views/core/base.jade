@@ -8,12 +8,12 @@ html(lang='es')
         title #{title}
 
         // application styles
-        link(rel='stylesheet', href='bower_components/normalize.css/normalize.css')
-        link(rel='stylesheet', href='assets/stylesheet/trackio.css')
+        link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
+        link(rel='stylesheet', href='/assets/stylesheet/trackio.css')
 
         // application front controller
-        script(src='bower_components/pace/pace.js')
-        script(data-main='assets/javascript/trackio', src='bower_components/requirejs/require.js')
+        script(src='/bower_components/pace/pace.js')
+        script(data-main='/assets/javascript/trackio', src='/bower_components/requirejs/require.js')
     body
         // header component
         header.header.red
@@ -22,7 +22,7 @@ html(lang='es')
                     a(href='/', title='#{title}') #{title}
                 nav.userbox.right
                     img(src='#{usuario.gravatar}?size=30')
-                    a(href='/usuario/#{usuario.nombreUsuario}', title='#{usuario.nombreUsuarioCompleto}') #{usuario.nombreUsuarioCompleto}
+                    a(href='/profile/#{usuario.nombreUsuario}', title='#{usuario.nombreUsuarioCompleto}') #{usuario.nombreUsuarioCompleto}
                     a(href='/logout', title='Cerrar Sesión') Cerrar Sesión
 
         // content component
