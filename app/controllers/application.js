@@ -35,9 +35,6 @@ ApplicationController.prototype.map = function(){
     this.router.route( this.root + '/logout' )
         .get( auth.authorized, this.logout );
 
-    // perfil de usuario
-    this.router.route( this.root + '/profile/:nombreUsuario' )
-        .get( auth.authorized, this.profile );
 };
 
 // Ruta '/home' de la aplicacion
