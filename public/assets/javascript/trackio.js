@@ -17,7 +17,7 @@ require.config({
     }
 });
 
-require(['jquery', 'helpers/template', 'views/proyecto', 'history/native.history'], function($, TemplateHelper, ProyectoView, History){
+require(['jquery', 'helpers/template', 'views/proyecto', 'core/router'], function($, TemplateHelper, ProyectoView, Router){
     $(document).on('ready', function(){
 
         // register handlebars helpers
@@ -28,12 +28,17 @@ require(['jquery', 'helpers/template', 'views/proyecto', 'history/native.history
         var proyecto = new ProyectoView();
         proyecto.init();
 
-        console.log('');
+        var router = new Router();
 
-        // Bind to StateChange Event
-        History.Adapter.bind(window,'statechange',function(){
-            var State = History.getState();
-            console.log(State);
+        router.route({
+            title : 'Trackio - Perfil',
+            path : '/perfil/:nombreUsuario'
+        }, function(state){
+            console.log(state);
+        });
+
+        router.route({ title : 'Tarea de Usuario', path : '/perfil/:codigoUsuario/tareas/:idtarea'}, function(state) {
+            console.log(state);
         });
 
     });
