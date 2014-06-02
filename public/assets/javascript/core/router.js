@@ -4,64 +4,62 @@
 
 define(['history/native.history', 'helpers/observable'], function(History, Observable){
 
-    var Router = function(){
+    var Router = function() {
         var self = this;
-        this.routes = [];
+        this.routes = {};
+
+        History.options.html4Mode = true;
+        History.options.disableSuid = true;
+        History.init();
 
         // Bind to StateChange Event
         History.Adapter.bind(window, 'statechange', function(){
-            var state = History.getState(), mapper = [];
+            var state = History.getState();
 
             // se elimina el uid del estado
             var path = state.hash.replace('?&_suid=' + state.id, '');
+            path = path.substring(1);
+            console.log(path);
 
-            // se recorre cada ruta, para verificar si hay alguna que coincida
-            // con el patron del path actual
-            for(var r = 0; r <= self.routes.length - 1; r++){
-                var route = self.routes[r],
-                    expr = new RegExp('/:[a-zA-Z0-9]+','gi'),
-                    param = '', mapping = {};
-
-                // se extrae cada holder de parámetro del patrón
-                while(true){
-                    param = expr.exec(route);
-                    // si no encuentra coincidencias, termina la búsqueda
-                    if(param === null) break;
-
-                    param = param[0]; // param[0] = el valor real del parámetro
-
-                    // se obtiene la posicion de inicio, para poder calcular la posicion
-                    // desde la cual se debe extraer el parametro en la ruta real
-                    var from = route.indexOf(param) + 1;
-
-                    var value = path.substring(from);
-
-                    value = value.substring(0, value.indexOf('/'));
-
-                    // se quita la información adicional del parametro '/:'
-                    param = param.substring(2, param.length );
-
-                    mapping[param] = value;
-                }
-                mapper.push(mapping);
+            // use uri data to generate template pattern for event triggering
+            for(var prop in state.data){
+                path = path.replace('/' + state.data[prop],'/:' +  prop);
             }
 
-            // se lanza el evento de encuentro de ruta
-            console.log(mapper);
-
-            this.trigger(path, mapper);
+            self.trigger(path, state.data);
         });
     };
 
     Router.prototype = new Observable();
 
     // asocia una ruta a un evento especifico de cambio
-    Router.prototype.route = function(options, callback){
-        this.routes.push(options.path);
+    // <param name='title'>Titulo de la página</param>
+    // <param name='routes'>Ruta o lista de rutas a escuchar</param>
+    // <param name='callback'>Llamada de ejecución de ruta.</param>
+    Router.prototype.route = function(routes, title, callback){
+        if(Array.isArray(routes)){
+            for(var r = 0; r <= routes.length - 1; r++){
+                var route = routes[r];
+                this.routes[ route ] = title;
+                this.on(route, callback);
+            }
+        }else{
+            this.routes[routes] = title;
+            this.on(routes, callback);
+        }
+        return this;
+    };
 
-        // llamamos internamente al método on, para asociar el evento
-        // con el manejador de eventos internos
-        Router.prototype.on(options.path, callback);
+    // Acciona una ruta parametrizada
+    // <param name='route'>Ruta a accionar.</param>
+    // <param name='data'>Datos a enviar por la ruta.</param>
+    Router.prototype.go = function(route, data){
+        var title = this.routes[route] || '';
+
+        console.log('going to : ' + route, ' page title : ' + title);
+        History.pushState(data || {}, title, route);
+
+        return this;
     };
 
     return Router;

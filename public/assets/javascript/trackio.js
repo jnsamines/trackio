@@ -24,23 +24,14 @@ require(['jquery', 'helpers/template', 'views/proyecto', 'core/router'], functio
         var helper = new TemplateHelper();
         helper.registerHelpers();
 
-        // main view
-        var proyecto = new ProyectoView();
-        proyecto.init();
-
         var router = new Router();
 
-        router.route({
-            title : 'Trackio - Perfil',
-            path : '/perfil/:nombreUsuario'
-        }, function(state){
-            console.log(state);
-        });
+        router.route(['/', '/proyectos'], 'Proyectos', function(){
+            // main view
+            var proyecto = new ProyectoView();
+            proyecto.init();
 
-        router.route({ title : 'Tarea de Usuario', path : '/perfil/:codigoUsuario/tareas/:idtarea'}, function(state) {
-            console.log(state);
-        });
-
+        }).go('/proyectos');
     });
 });
 

@@ -13,6 +13,9 @@ html(lang='es')
 
         // application front controller
         script(src='/bower_components/pace/pace.js')
+        script(type='text/javascript').
+            window.History = { options: { delayInit: true} };
+
         script(data-main='/assets/javascript/trackio', src='/bower_components/requirejs/require.js')
     body
         // header component
