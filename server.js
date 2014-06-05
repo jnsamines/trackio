@@ -66,3 +66,9 @@ mapper.mapApiRoutes(apiRouter);
 
 application.use('/', appRouter);
 application.use('/api', apiRouter);
+
+// handling errors
+application.use('/', function(request, response){
+    response.status(202);
+    response.send('Not Found');
+});
