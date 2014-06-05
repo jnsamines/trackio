@@ -2,37 +2,49 @@ extends core/base
 
 // block application-content
 block application-content
-    // application toolbar
-    nav.toolbar.center
-        input.medium.radius(type='text',name='textElemento', placeholder='Ingrese el nombre del proyecto')
-        a#buttonNuevoProyecto.button.medium.radius.skyblue.right(href='#') Nuevo Proyecto +
 
-    // content
-    section.container.center
-        table.table.center.large
-            caption Seguimiento de Proyectos
-            thead
-                tr
-                    th Codigo Tarea
-                    th Tarea
-                    th Tiempo
-                    th Realizado Por
-            tbody#proyectos_container.group
+    // application templates
+    // proyectos template
+    script#proyectos_template(type='text/x-handlebars-template')
+        // toolbar
+        nav.toolbar.center
+            input.medium.radius(type='text',name='textElemento', placeholder='Ingrese el nombre del proyecto')
+            a#buttonNuevoProyecto.button.medium.radius.skyblue.right(href='#') Nuevo Proyecto +
 
-    // templates
-    // template for proyect list display
-    script#proyectos_template(type='text/x-handlebars-template').
-        {{#each this}}
-            <tr class='group-header'>
-                <th colspan='3'> {{nombreProyecto}}</th>
-                <th><span class='label lightgray radius right'>{{totalHorasProyecto this.tareas}} horas.</span></th>
-            </tr>
-            {{#each this.tareas}}
-                <tr class='group-content'>
-                    <td><a href='#' class='button link'>{{_id}}</a></td>
-                    <td>{{descripcion}}</td>
-                    <td><span class='label yellow radius'>{{tiempo}}</span></td>
-                    <td><a href='#' class='button link'>{{usuario}}</a></td>
-                </tr>
-            {{/each}}
+        // proyectos
+        section.container.center
+            table.table.center.large
+                caption Seguimiento de Proyectos
+                thead
+                    tr
+                        th Codigo Tarea
+                        th Tarea
+                        th Tiempo
+                        th Realizado Por
+                tbody#proyectos_container.group.
+                    {{#each this}}
+                        {{> proyecto}}
+                    {{/each}}
+
+
+    // template for proyecto item
+    script#proyecto_partial(type='text/x-handlebars-template')
+        tr.group-header
+            th(colspan='3') {{nombreProyecto}}
+            th
+                span.label.lightgray.radius.right {{totalHorasProyecto this.tareas}} horas.
+
+        {{#each this.tareas}}
+        tr.group-content
+            td
+                a.button.link(href='#') {{_id}}
+            td {{descripcion}}
+            td
+                span.label.yellow.radius {{tiempo}}
+            td
+                a.button.link(href='#') {{usuario}}
         {{/each}}
+
+    // template for user profile
+    script#perfil_template(type='text/x-handlebars-template')
+        

@@ -25,11 +25,11 @@ html(lang='es')
                     a(href='/', title='#{title}') #{title}
                 nav.userbox.right
                     img(src='#{usuario.gravatar}?size=30')
-                    a(href='/#profile/#{usuario.nombreUsuario}', title='#{usuario.nombreUsuarioCompleto}') #{usuario.nombreUsuarioCompleto}
+                    a(href='#', title='#{usuario.nombreUsuarioCompleto}', data-route='/perfil/:nombreUsuario', data-nombreUsuario='#{usuario.nombreUsuario}') #{usuario.nombreUsuarioCompleto}
                     a(href='/logout', title='Cerrar Sesión') Cerrar Sesión
 
         // content component
-        section.application.container.center
+        section#application.application.container.center
             block application-content
 
         // footer component
