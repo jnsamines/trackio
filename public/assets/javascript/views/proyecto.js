@@ -11,7 +11,7 @@ define(dependencies, function($, Handlebars, ProyectoCollection){
 
         // view components
         this.components = {};
-        this.components.$root = $('#proyectos_container');
+        this.components.$root = $('#application');
         this.components.$template = Handlebars.compile($('#proyectos_template').html());
         this.components.$buttonNuevoProyecto = $('#buttonNuevoProyecto');
 

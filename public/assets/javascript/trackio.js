@@ -32,6 +32,12 @@ require(['jquery', 'helpers/template', 'views/proyecto', 'core/router'], functio
             proyecto.init();
 
         }).go('/proyectos');
+
+        router.route('/perfil/:nombreUsuario', 'Perfil - {nombreUsuario}', function(data){
+            console.log('Perfil de Usuario : ' + data.nombreUsuario );
+        });
+
+
     });
 });
 
