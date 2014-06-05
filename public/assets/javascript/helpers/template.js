@@ -3,7 +3,7 @@
 // Author : Jonathan Samines [jnsamines]
 
 // Helpers registry
-define(['handlebars'], function(Handlebars){
+define(['handlebars', 'jquery'], function(Handlebars, $){
 
     function TemplateHelper(){}
 
@@ -19,6 +19,8 @@ define(['handlebars'], function(Handlebars){
 
             return total;
         });
+
+        Handlebars.registerPartial("proyecto", $("#proyecto_partial").html());
     };
 
     return TemplateHelper;
