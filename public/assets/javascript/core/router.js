@@ -4,13 +4,66 @@
 
 define(['history/native.history', 'helpers/observable'], function(History, Observable){
 
+    // globals
+    var dataAttributePattern = 'data-[A-Za-z0-9]+',
+        uriParamPattern = '/:[A-Za-z0-9]+';
+
+
+    // Enrutador de acciones del cliente
     var Router = function() {
         var self = this;
         this.routes = {};
 
+        // History configuration
         History.options.html4Mode = true;
         History.options.disableSuid = true;
         History.init();
+
+        // se habilita el ruteo mediante data-route
+        $('[data-route]').on('click', function(e){
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var expr = new RegExp(dataAttributePattern, 'gi');
+
+            var $this = $(this),
+                route = $this.attr('data-route'),
+                attributes = this.attributes,
+                params = {}, data = {};
+
+            var exp = new RegExp(uriParamPattern,'gi');
+            while(true){
+                var param = exp.exec(route);
+                if(param == null) break;
+
+                param = param[0];
+                param = param.replace('/:','');
+                params[param.toLowerCase()] = param;
+            }
+
+            // se itera a través de los attributes
+            // y se buscan todos los que tengan valores data-*
+            // excluyendo data-route
+            for(var v = 0; v <= attributes.length - 1; v++){
+                var attribute = attributes[v];
+
+                if(attribute.name === 'data-route') continue;
+                if(!expr.test(attribute.name)) continue;
+
+                var property = attribute.name.replace('data-','');
+                property = params[property];
+                data[property] = attribute.value;
+            }
+
+            var pattern = new RegExp('/:[A-Za-z0-9]+','gi'),
+                path = '';
+            for(var param in params){
+                path = route.replace(pattern, '/' + data[ params[param] ])
+            }
+            console.log(path);
+            self.go(path, data);
+        });
+
 
         // Bind to StateChange Event
         History.Adapter.bind(window, 'statechange', function(){
@@ -18,13 +71,13 @@ define(['history/native.history', 'helpers/observable'], function(History, Obser
 
             // se elimina el uid del estado
             var path = state.hash.replace('?&_suid=' + state.id, '');
-            path = path.substring(1);
-            console.log(path);
+            path = path.replace('./','');
 
             // use uri data to generate template pattern for event triggering
             for(var prop in state.data){
                 path = path.replace('/' + state.data[prop],'/:' +  prop);
             }
+            path = '/' + path;
 
             self.trigger(path, state.data);
         });
@@ -32,11 +85,15 @@ define(['history/native.history', 'helpers/observable'], function(History, Obser
 
     Router.prototype = new Observable();
 
+
     // asocia una ruta a un evento especifico de cambio
     // <param name='title'>Titulo de la página</param>
     // <param name='routes'>Ruta o lista de rutas a escuchar</param>
     // <param name='callback'>Llamada de ejecución de ruta.</param>
     Router.prototype.route = function(routes, title, callback){
+
+        // se verifica el tipo de parametro que es "routes"
+        // para asi poder asignar el handler correctamente
         if(Array.isArray(routes)){
             for(var r = 0; r <= routes.length - 1; r++){
                 var route = routes[r];
@@ -54,9 +111,15 @@ define(['history/native.history', 'helpers/observable'], function(History, Obser
     // <param name='route'>Ruta a accionar.</param>
     // <param name='data'>Datos a enviar por la ruta.</param>
     Router.prototype.go = function(route, data){
+
+        // se obtiene
         var title = this.routes[route] || '';
 
-        console.log('going to : ' + route, ' page title : ' + title);
+        // se reemplaza el template del titulo si es que existe
+        for(var prop in data){
+            title = title.replace('{' + prop + '}', data[prop]);
+        }
+
         History.pushState(data || {}, title, route);
 
         return this;
