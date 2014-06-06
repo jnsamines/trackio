@@ -30,6 +30,8 @@ var UsuarioSchema = new Schema({
         type : String,
         trim : true
     }
+}, {
+    toJSON : { virtuals : true }
 });
 
 UsuarioSchema.virtual('nombreUsuarioCompleto').get(function(){

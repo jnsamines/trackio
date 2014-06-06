@@ -72,7 +72,7 @@ UsuarioController.prototype.obtenerUsuarios = function(request, response){
             logger.error(message, error);
             response.json({ error : message });
         }
-        
+
         response.json(usuarios);
     });
 };
