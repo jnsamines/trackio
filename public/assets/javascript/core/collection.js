@@ -18,6 +18,7 @@ define(['jquery', 'core/model', 'helpers/observable'], function($, Model, Observ
         // root url for model fetching
         this.url = options.url;
         this.collection = [];
+        this.events = {};
 
         // verify if is a constructor function
         // if thats true, then create an instance from this function

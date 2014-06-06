@@ -60,7 +60,7 @@ define(['history/native.history', 'helpers/observable'], function(History, Obser
             for(var param in params){
                 path = route.replace(pattern, '/' + data[ params[param] ])
             }
-            console.log(path);
+
             self.go(path, data);
         });
 
@@ -78,6 +78,16 @@ define(['history/native.history', 'helpers/observable'], function(History, Obser
                 path = path.replace('/' + state.data[prop],'/:' +  prop);
             }
             path = '/' + path;
+
+            // se obtiene el titulo
+            var title = self.routes[path] || '';
+
+            // se reemplaza el template del titulo si es que existe
+            for(var prop in state.data){
+                title = title.replace('{' + prop + '}', state.data[prop]);
+            }
+
+            document.title = title;
 
             self.trigger(path, state.data);
         });
@@ -111,16 +121,7 @@ define(['history/native.history', 'helpers/observable'], function(History, Obser
     // <param name='route'>Ruta a accionar.</param>
     // <param name='data'>Datos a enviar por la ruta.</param>
     Router.prototype.go = function(route, data){
-
-        // se obtiene
-        var title = this.routes[route] || '';
-
-        // se reemplaza el template del titulo si es que existe
-        for(var prop in data){
-            title = title.replace('{' + prop + '}', data[prop]);
-        }
-
-        History.pushState(data || {}, title, route);
+        History.pushState(data || {}, null, route);
 
         return this;
     };
