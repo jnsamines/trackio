@@ -14,24 +14,31 @@
         position : relative;
     }
     .header .title,
-    .header .userbox{
+    .header .header-menu{
         display: inline-block;
         margin : 0;
         vertical-align : middle;
     }
     
-    .header .userbox{
+    .header .header-menu{
         cursor : pointer;
         display : inline-block;
     }
-        .userbox a,
-        .userbox img{ 
-            display: inline-block; 
-            vertical-align : middle;
-            padding : .4em .5em;
+        .header-menu ul{ list-style: none;}
+        .header-menu li{
+            display : inline-block;
+            margin : 0 1px;
+            padding : .2em .2em;
         }
 
-        .header .userbox img{
+        .header-menu li a,
+        .header-menu li img{
+            display : inline-block;
+            vertical-align : middle;
+        }
+
+        .header-menu li a{ padding : .6em .8em; }
+        .header-menu li img{
             width : 30px;
             height : 30px;
         }
@@ -41,6 +48,6 @@
         background-color : #AC4142;
         border-bottom : 2px solid #9B3E3E;
     }
-        .header.red .userbox{
+        .header.red .header-menu li{
             background-color : #9B3E3E;
         }

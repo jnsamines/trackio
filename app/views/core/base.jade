@@ -23,10 +23,13 @@ html(lang='es')
             .container.center
                 h1.title.left
                     a(href='/', title='#{title}') #{title}
-                nav.userbox.right
-                    img(src='#{usuario.gravatar}?size=30')
-                    a(href='#', title='#{usuario.nombreUsuarioCompleto}', data-route='/perfil/:nombreUsuario', data-nombreUsuario='#{usuario.nombreUsuario}') #{usuario.nombreUsuarioCompleto}
-                    a(href='/logout', title='Cerrar Sesión') Cerrar Sesión
+                nav.header-menu.right
+                    ul
+                        li
+                            img(src='#{usuario.gravatar}?size=30')
+                            a(href='#', title='#{usuario.nombreUsuarioCompleto}', data-route='/perfil/:nombreUsuario', data-nombreUsuario='#{usuario.nombreUsuario}') #{usuario.nombreUsuarioCompleto}
+                        li
+                            a(href='/logout', title='Cerrar Sesión') Cerrar Sesión
 
         // content component
         section#application.application.container.center

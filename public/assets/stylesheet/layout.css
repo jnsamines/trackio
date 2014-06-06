@@ -21,6 +21,7 @@ html, body{
         background-color : #fff;
         max-width : 61rem;
         min-height : 700px;
+        padding : 1em;
     }
 
     .loginbox{
