@@ -17,7 +17,7 @@ require.config({
     }
 });
 
-require(['jquery', 'helpers/template', 'views/proyecto', 'core/router'], function($, TemplateHelper, ProyectoView, Router){
+require(['jquery', 'helpers/template', 'views/proyecto', 'core/router', 'views/usuario'], function($, TemplateHelper, ProyectoView, Router, UsuarioView){
     $(document).on('ready', function(){
 
         // register handlebars helpers
@@ -26,15 +26,21 @@ require(['jquery', 'helpers/template', 'views/proyecto', 'core/router'], functio
 
         var router = new Router();
 
+        // main view
+        if(document.location.pathname === '/') {
+            var proyecto = new ProyectoView();
+            proyecto.init();
+        }
+
         router.route(['/', '/proyectos'], 'Proyectos', function(){
             // main view
             var proyecto = new ProyectoView();
             proyecto.init();
-
-        }).go('/proyectos');
+        });
 
         router.route('/perfil/:nombreUsuario', 'Perfil - {nombreUsuario}', function(data){
-            console.log('Perfil de Usuario : ' + data.nombreUsuario );
+            var usuario = new UsuarioView();
+            usuario.init();
         });
 
 

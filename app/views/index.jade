@@ -3,6 +3,7 @@ extends core/base
 // block application-content
 block application-content
 
+block templates_section
     // application templates
     // proyectos template
     script#proyectos_template(type='text/x-handlebars-template')
@@ -46,5 +47,13 @@ block application-content
         {{/each}}
 
     // template for user profile
-    script#perfil_template(type='text/x-handlebars-template')
-        
+    script#usuario_template(type='text/x-handlebars-template')
+        form#informacionPerfil(action='/perfil', method='post')
+            label(for='nombreUsuario') Nombre de Usuario
+            input(name='nombreUsuario', id='nombreUsuario', type='text', value='{{nombreUsuario}}', class='medium radius')
+
+            label(for='nombreCompleto') Nombres
+            input(name='nombreCompleto', id='nombreCompleto', type='text', value='{{nombreCompleto}}', class='medium radius')
+
+            label(for='apellidoCompleto') Apellidos
+            input(name='apellidoCompleto', id='apellidoCompleto', type='text', value='{{apellidoCompleto}}', class='medium radius')

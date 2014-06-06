@@ -16,8 +16,6 @@ input[type='password'],
 input[type='email']{
     border : 1px solid #e0e0e0;
     padding : .5em;
-    margin-top : .5em;
-    margin-bottom : .5em;
     outline : none;
 }
 
