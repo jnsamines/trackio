@@ -9,7 +9,7 @@ form label{
     display : block;
 }
 
-form label{ margin-top : .3em; }
+form label{ margin-top : .3em; text-align : left; }
 
 input[type='text'],
 input[type='password'],
@@ -17,6 +17,7 @@ input[type='email']{
     border : 1px solid #e0e0e0;
     padding : .5em;
     outline : none;
+    margin : .5em auto;
 }
 
 input[type='text'].small,

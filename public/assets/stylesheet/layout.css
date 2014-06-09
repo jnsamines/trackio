@@ -9,6 +9,7 @@ html, body{
     color : #202020;
     font-size : 16px;
 }
+h4{ margin : 5px; }
 
 .container{
     position : relative;
@@ -17,12 +18,21 @@ html, body{
 }
 
 /* application styles */
-    .application{
-        background-color : #fff;
-        max-width : 61rem;
-        min-height : 700px;
-        padding : 1em;
+.application{
+    background-color : #fff;
+    max-width : 61rem;
+    min-height : 700px;
+    padding : 1em;
+}
+
+    /* profile view */
+    .profile-content{text-align : center;}
+    .profile-content .profilebox{
+        display : inline-block;
+        padding : 2em 2em;
     }
+
+
 
     .loginbox{
         background-color : #fff;
