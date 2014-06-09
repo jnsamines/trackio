@@ -9,15 +9,21 @@ var Usuario = require('../models/usuario'),
 // Controlador de datos para Usuario
 var UsuarioController = function(root, router){
     this.router = router;
-    this.mapper = router.route(root);
+    this.root = root;
 };
 
 // Mapea las rutas/controladores de la entidad
 UsuarioController.prototype.map = function(){
-    this.mapper.get(this.obtenerUsuarios);
-    this.mapper.post(cargarUsuarioDeRequest, this.crearUsuario);
-    this.mapper.put(buscarUsuarioPorCodigo, this.actualizarUsuario);
-    this.mapper.delete(buscarUsuarioPorCodigo, this.eliminarUsuario);
+    this.router.route(this.root)
+        .get(this.obtenerUsuarios)
+        .post(cargarUsuarioDeRequest, this.crearUsuario);
+
+    this.router.route( this.root + '/:codigoUsuario')
+        .put(buscarUsuarioPorCodigo, this.actualizarUsuario)
+        .delete(buscarUsuarioPorCodigo, this.eliminarUsuario);
+
+    this.router.route( this.root  + '/:nombreUsuario')
+        .get( buscarUsuarioPorNombreUsuario, this.obtenerUsuario );
 };
 
 
@@ -38,10 +44,36 @@ function buscarUsuarioPorCodigo(request, response, next){
             logger.error(message, error);
             response.json({ message : message });
         }
-        
-        response.json(usuario);
+
+        request.usuario = usuario;
+        next();
     });
 }
+
+// Busca en la base de datos a un usuario por su username
+// <param name='request'>solicitud http</param>
+// <param name='response'>respuesta http</param>
+// <param name='next'>funcion de llamada del middleware</param>
+function buscarUsuarioPorNombreUsuario(request, response, next){
+    var nombreUsuario = request.params.nombreUsuario;
+
+    Usuario.findOne({ nombreUsuario : nombreUsuario}, function(error, usuario){
+        if(error){
+            var message = 'Error al realizar la búsqueda del usuario';
+            logger.error(message, error);
+            response.json(500, { message : message });
+        }
+
+        if(usuario === null){
+            response.json(404, { message : 'No se encontro el usuario solicitado.'});
+        }else{
+            request.usuario = usuario;
+            next();
+        }
+    });
+}
+
+
 
 // Carga el usuario en el body del request en un objeto independiente (request.usuario)
 // <param name='request'>solicitud http</param>
@@ -64,7 +96,6 @@ function cargarUsuarioDeRequest(request, response, next){
 // <param name='request'>solicitud http</param>
 // <param name='response'>respuesta http</param>
 UsuarioController.prototype.obtenerUsuarios = function(request, response){
-    
     // se busca la lista de usuarios en la base de datos
     Usuario.find(function(error, usuarios){
         if(error){
@@ -77,12 +108,15 @@ UsuarioController.prototype.obtenerUsuarios = function(request, response){
     });
 };
 
+UsuarioController.prototype.obtenerUsuario = function(request, response){
+    response.json(request.usuario);
+};
+
 
 // Crea un nuevo usuario en la base de datos
 // <param name='request'>solicitud http</param>
 // <param name='response'>respuesta http</param>
 UsuarioController.prototype.crearUsuario = function(request, response){
-
     var usuario = request.usuario;
     
     usuario.save(function(error, result){
