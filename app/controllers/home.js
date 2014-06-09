@@ -1,4 +1,4 @@
-// application.js
+// home.js
 // Controlador principal para las rutas estáticas de la aplicacion
 // Author : Jonathan Samines [jnsamines]
 
@@ -9,12 +9,12 @@ var auth = require('../helpers/authentication'),
 // Controlador de aplicacion
 // <param name='root'>Ruta principal del mapeo</param>
 // <param name='router'>Router principal de la aplicacion</param>
-var ApplicationController = function(root, router){
+var HomeController = function(root, router){
     this.router = router;
     this.root = root;
 };
 
-ApplicationController.prototype.info = function(request, response, next){
+HomeController.prototype.info = function(request, response, next){
     response.locals.title = 'Trackio';
     response.locals.usuario = request.session.usuario;
     next();
@@ -22,7 +22,7 @@ ApplicationController.prototype.info = function(request, response, next){
 
 
 // Carga los bindins de las rutas de la aplicacion
-ApplicationController.prototype.map = function(){
+HomeController.prototype.map = function(){
     // root
     this.router.use( this.info );
     this.router.route( this.root ).get( auth.authorized, this.home );
@@ -38,19 +38,19 @@ ApplicationController.prototype.map = function(){
 };
 
 // Ruta '/home' de la aplicacion
-ApplicationController.prototype.home = function(request, response){
+HomeController.prototype.home = function(request, response){
     response.render('index');
 };
 
 // Ruta '/login' de la aplicacion
 // vista de inicio de sesión
-ApplicationController.prototype.loginview = function(request, response){
+HomeController.prototype.loginview = function(request, response){
     response.render('login', { title : 'Trackio - Inicio de Sesión'});
 };
 
 // ruta '/login'
 // logica de inicio de sesión
-ApplicationController.prototype.login = function(request, response){
+HomeController.prototype.login = function(request, response){
     // try to login
     var username = request.body.username;
     var password = request.body.password;
@@ -73,9 +73,9 @@ ApplicationController.prototype.login = function(request, response){
 
 // Ruta '/logout' de la aplicación
 // cierra la sesión del usuario
-ApplicationController.prototype.logout = function(request, response){
+HomeController.prototype.logout = function(request, response){
     request.session.destroy();
     response.redirect('/login');
 };
 
-module.exports = ApplicationController;
+module.exports = HomeController;
